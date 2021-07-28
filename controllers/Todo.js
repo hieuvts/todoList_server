@@ -78,7 +78,7 @@ exports.deleteTodo = (req, res) => {
         }
         // send deleted todo and success message as a json response
         res.json({
-            id: task.id,
+            id: todo.id,
             message: "Todo deleted successfully!",
         });
     });
