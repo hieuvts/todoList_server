@@ -36,13 +36,13 @@ exports.getTodo = (req, res) => {
 
 exports.createTodo = (req, res) => {
     const todo = new Todo(req.body);
-    todo.save((err, task) => {
+    todo.save((err, todo) => {
         if (err || !task) {
             return res.status(400).json({
                 error: "Something went wrong",
             });
         }
-        res.json({ task });
+        res.json(todo);
     });
 };
 
@@ -53,16 +53,15 @@ exports.updateTodo = (req, res) => {
     // simply change the task of the todo that user want to update by
     // the task that user has sent in req.body.task
     todo.isCompleted = req.body.isCompleted;
-
     // simply save that updated todo
-    todo.save((err, t) => {
+    todo.save((err, todo) => {
         if (err || !t) {
             return res.status(400).json({
-                error: "something went wrong while updating",
+                error: "Something went wrong while updating",
             });
         }
         // send the updated todo as a json response
-        res.json(t);
+        res.json(todo);
     });
 };
 
@@ -79,7 +78,7 @@ exports.deleteTodo = (req, res) => {
         }
         // send deleted todo and success message as a json response
         res.json({
-            task_deleted: task,
+            id: task.id,
             message: "Todo deleted successfully!",
         });
     });
