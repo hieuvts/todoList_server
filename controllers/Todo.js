@@ -55,7 +55,7 @@ exports.updateTodo = (req, res) => {
     todo.isCompleted = req.body.isCompleted;
     // simply save that updated todo
     todo.save((err, todo) => {
-        if (err || !t) {
+        if (err || !todo) {
             return res.status(400).json({
                 error: "Something went wrong while updating",
             });
@@ -70,8 +70,8 @@ exports.deleteTodo = (req, res) => {
     // fetch the todo that user wants to delete
     const todo = req.todo;
     // call .remove() method to delete it
-    todo.remove((err, task) => {
-        if (err || !task) {
+    todo.remove((err, todo) => {
+        if (err || !todo) {
             return res.status(400).json({
                 error: "something went wrong while deleting the todo",
             });
