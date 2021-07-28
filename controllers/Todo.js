@@ -37,7 +37,7 @@ exports.getTodo = (req, res) => {
 exports.createTodo = (req, res) => {
     const todo = new Todo(req.body);
     todo.save((err, todo) => {
-        if (err || !task) {
+        if (err || !todo) {
             return res.status(400).json({
                 error: "Something went wrong",
             });
